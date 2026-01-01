@@ -2,7 +2,7 @@
 name = "hardened_malloc-rs"
 description = "hardened_malloc rust wrapper"
 authors = ["strawberry <strawberry@puppygock.gay>"]
-edition = "2021"
+edition = "2024"
 license = "Apache-2.0 OR MIT"
 repository = "https://github.com/girlbossceo/hardened_malloc-rs"
 keywords = ["hardened_malloc", "malloc", "ffi", "security", "bindings"]
@@ -10,16 +10,10 @@ categories = ["api-bindings", "memory-management"]
 readme = "README.md"
 
 # everything after the '+' is the latest GrapheneOS hardened_malloc repo tag
-version = "0.1.2+12"
-
-# https://github.com/GrapheneOS/hardened_malloc?tab=readme-ov-file#dependencies
-# Debian stable (currently Debian 12) determines the most ancient set of supported dependencies
-#
-# (Debian 12 has Rust 1.63.0)
-rust-version = "1.63.0"
+version = "0.1.2+13.1"
 
 [features]
-default = ["static", "gcc", "light"]
+default = ["static", "clang", "standard"]
 
 ## compiler
 clang = []

@@ -1,7 +1,7 @@
 use core::ffi::{c_int, c_void, c_size_t};
 
 #[allow(dead_code)]
-extern "C" {
+unsafe extern "C" {
 
     /* C standard */
     pub fn malloc(size: c_size_t) -> *mut c_void;
