@@ -1,19 +1,19 @@
-use core::ffi::{c_int, c_void, c_size_t};
+use core::ffi::{c_int, c_size_t, c_void};
 
 #[allow(dead_code)]
 unsafe extern "C" {
 
-    /* C standard */
+    // C standard
     pub fn malloc(size: c_size_t) -> *mut c_void;
     pub fn calloc(nmemb: c_size_t, size: c_size_t) -> *mut c_void;
     pub fn realloc(ptr: *mut c_void, size: c_size_t) -> *mut c_void;
     pub fn aligned_alloc(alignment: c_size_t, size: c_size_t) -> *mut c_void;
     pub fn free(ptr: *mut c_void);
 
-    /* POSIX */
+    // POSIX
     pub fn posix_memalign(memptr: *mut *mut c_void, alignment: c_size_t, size: c_size_t) -> c_int;
 
-    /* glibc extensions */
+    // glibc extensions
     #[cfg(target_os = "android")]
     pub fn malloc_usable_size(ptr: *const c_void) -> c_size_t;
     #[cfg(not(target_os = "android"))]
@@ -22,16 +22,15 @@ unsafe extern "C" {
     pub fn malloc_trim(pad: c_size_t) -> c_int;
     pub fn malloc_stats();
 
-    /* TODO: add support for these
-        #if defined(__GLIBC__) || defined(__ANDROID__)
-    struct mallinfo h_mallinfo(void);
-        #endif
-        #ifndef __ANDROID__
-        int h_malloc_info(int options, FILE *fp);
-        #endif
-    */
+    // TODO: add support for these
+    // #if defined(__GLIBC__) || defined(__ANDROID__)
+    // struct mallinfo h_mallinfo(void);
+    // #endif
+    // #ifndef __ANDROID__
+    // int h_malloc_info(int options, FILE *fp);
+    // #endif
 
-    /* obsolete glbc extensions */
+    // obsolete glbc extensions
     pub fn memalign(alignment: c_size_t, size: c_size_t) -> *mut c_void;
     #[cfg(not(target_os = "android"))]
     pub fn valloc(size: c_size_t) -> *mut c_void;
@@ -41,21 +40,21 @@ unsafe extern "C" {
     pub fn malloc_get_state() -> *mut c_void;
     pub fn malloc_set_state(state: *mut c_void) -> c_int;
 
-    /* TODO: add support for these android extensions
-        // Android extensions
-    #ifdef __ANDROID__
-    size_t h_mallinfo_narenas(void);
-    size_t h_mallinfo_nbins(void);
-    struct mallinfo h_mallinfo_arena_info(size_t arena);
-    struct mallinfo h_mallinfo_bin_info(size_t arena, size_t bin);
-    int h_malloc_iterate(uintptr_t base, size_t size, void (*callback)(uintptr_t ptr, size_t size, void *arg),
-                  void *arg);
-    void h_malloc_disable(void);
-    void h_malloc_enable(void);
-    void h_malloc_disable_memory_tagging(void);
-    #endif */
+    // TODO: add support for these android extensions
+    // Android extensions
+    // #ifdef __ANDROID__
+    // size_t h_mallinfo_narenas(void);
+    // size_t h_mallinfo_nbins(void);
+    // struct mallinfo h_mallinfo_arena_info(size_t arena);
+    // struct mallinfo h_mallinfo_bin_info(size_t arena, size_t bin);
+    // int h_malloc_iterate(uintptr_t base, size_t size, void (*callback)(uintptr_t
+    // ptr, size_t size, void *arg), void *arg);
+    // void h_malloc_disable(void);
+    // void h_malloc_enable(void);
+    // void h_malloc_disable_memory_tagging(void);
+    // #endif
 
-    /* hardened_malloc extensions */
+    // hardened_malloc extensions
     /// return an upper bound on object size for any pointer based on malloc
     /// metadata
     pub fn malloc_object_size(ptr: *const c_void) -> c_size_t;
