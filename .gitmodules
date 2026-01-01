@@ -1,3 +1,4 @@
 [submodule "hardened_malloc"]
 	path = src/hardened_malloc
 	url = https://github.com/fuchskurt/hardened_malloc.git
+	branch = size_check
